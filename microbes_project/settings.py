@@ -28,8 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
-    "bio-umzil.ondigitalocean.app"
-    "bio.blackligo.live"
+    "bio-umzil.ondigitalocean.app",
+    "bio.blackligo.live",
 ]
 
 
