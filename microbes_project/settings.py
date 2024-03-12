@@ -26,7 +26,11 @@ SECRET_KEY = 'django-insecure-&9mbj_c-rqz8swt(cg+$cc(s8x8(^ft&$s+wh0m%p!z2!y)ok3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    "bio-umzil.ondigitalocean.app"
+    "bio.blackligo.live"
+]
 
 
 # Application definition
