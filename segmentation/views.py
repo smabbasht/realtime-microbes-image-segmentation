@@ -8,7 +8,9 @@ import time
 
 # Simulated image processing function
 def segment_image(image):
-    # @Hussain add your logic here, return the processed_image
+    # @Hussain add your logic here, return the processed_image, model_folder ka
+    # path main ne bnadia hai for your ease.
+    model_folder = "model"
     processed_image = image  # do something here
     return processed_image
 
