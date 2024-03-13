@@ -8,17 +8,19 @@ document.getElementById('imageUpload').addEventListener('change', function(event
                 <img src="${URL.createObjectURL(file)}" alt="Uploaded Image">
             </div>
         `; // Display uploaded image
+        // Enable detect button after uploading image
+        document.getElementById('detectButton').disabled = false;
     }
 });
 
 document.getElementById('detectButton').addEventListener('click', function() {
+    // Disable detect button when it's clicked
+    this.disabled = true;
+
     const imageUpload = document.getElementById('imageUpload');
     if (imageUpload.files.length > 0) {
         const formData = new FormData();
         formData.append('image', imageUpload.files[0]);
-        // check if already there are two containers then overwrite the image in the second one, 
-        // else create a new container
-
 
         fetch('/detect', {
             method: 'POST',
@@ -31,13 +33,19 @@ document.getElementById('detectButton').addEventListener('click', function() {
             container.innerHTML += `
                 <div class="image-container">
                     <div class="label">Segmented Image</div>
-                    <img src="${data.processed}" alt="Segmented Image">
+                    <img src="${data.processed}?t=${new Date().getTime()}" alt="Segmented Image">
                 </div>
             `;
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => {
+            console.error('Error:', error);
+            // Re-enable detect button on error
+            document.getElementById('detectButton').disabled = false;
+        });
     } else {
         alert('Please upload an image first.');
+        // Re-enable detect button if no image is uploaded
+        this.disabled = false;
     }
 });
 

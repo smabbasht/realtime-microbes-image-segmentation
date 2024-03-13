@@ -3,6 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from django.conf import settings
 import os
+import time
 
 
 # Simulated image processing function
@@ -20,14 +21,15 @@ def process_image(request):
         processed_image = segment_image(image)
         save_path = os.path.join(settings.MEDIA_ROOT, 'model_output.png')
         os.makedirs(os.path.dirname(save_path), exist_ok=True)
-
+        if os.path.exists(save_path):
+            os.remove(save_path)
         # Save the "processed" image to the specified path
         with open(save_path, 'wb+') as destination:
             for chunk in processed_image.chunks():
                 destination.write(chunk)
 
         processed_image_url = os.path.join(
-            settings.MEDIA_ROOT, 'model_output.png')
+            settings.MEDIA_URL, 'model_output.png')
 
         return JsonResponse({
             'processed': processed_image_url,
