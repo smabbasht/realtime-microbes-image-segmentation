@@ -16,6 +16,9 @@ document.getElementById('detectButton').addEventListener('click', function() {
     if (imageUpload.files.length > 0) {
         const formData = new FormData();
         formData.append('image', imageUpload.files[0]);
+        // check if already there are two containers then overwrite the image in the second one, 
+        // else create a new container
+
 
         fetch('/detect', {
             method: 'POST',

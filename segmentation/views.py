@@ -27,7 +27,7 @@ def process_image(request):
                 destination.write(chunk)
 
         processed_image_url = os.path.join(
-            settings.MEDIA_URL, 'model_output.png')
+            settings.MEDIA_ROOT, 'model_output.png')
 
         return JsonResponse({
             'processed': processed_image_url,
